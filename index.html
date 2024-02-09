@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do list</title>
+
+    <!-- add css file -->
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- fa fa icons -->
+    <script src="https://kit.fontawesome.com/c90ad2af29.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <form>
+                <input type="text" id="task" placeholder="enter your task">
+                <br>
+                <select id="prior">
+                    <option>Select option</option>
+                    <option value="high">high</option>
+                    <option value="low">low</option>
+                </select>
+                <br>
+                <input type="submit">
+            </form>
+
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>task name</th>
+                        <th>priority</th>
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    document.querySelector("form").addEventListener("submit", myFunc);
+
+    let TodoArr = []
+    function myFunc() {
+        event.preventDefault();
+
+        let task = document.querySelector("#task").value;
+        let priority = document.querySelector("#prior").value;
+
+        // console.log(task);
+        // console.log(priority);
+
+        let todoObj = {
+            taskObj: task,
+            prior: priority
+        }
+
+        TodoArr.push(todoObj);
+        console.log(todoObj);
+    }
+</script>
