@@ -18,14 +18,14 @@
         <div class="todo-app">
             <form>
                 <input type="text" id="task" placeholder="enter your task">
-                <br>
+
                 <select id="prior">
                     <option>Select option</option>
                     <option value="high">high</option>
                     <option value="low">low</option>
                 </select>
-                <br>
-                <input type="submit">
+
+                <input type="submit" class="button">
             </form>
 
             <table border="2">
@@ -37,7 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
+
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -55,16 +57,46 @@
 
         let task = document.querySelector("#task").value;
         let priority = document.querySelector("#prior").value;
-
         // console.log(task);
         // console.log(priority);
 
-        let todoObj = {
+        let TodoObj = {
             taskObj: task,
             prior: priority
         }
 
-        TodoArr.push(todoObj);
-        console.log(todoObj);
+        TodoArr.push(TodoObj);
+        console.log(TodoArr);
+
+        displayTable(TodoArr)
+    }
+
+    function displayTable(TodoArr) {
+        document.querySelector("tbody").innerHTML = ""
+        TodoArr.forEach(function (elem) {
+
+            let row = document.createElement("tr");
+            let col1 = document.createElement("td");
+            col1.innerText = elem.taskObj;
+
+            let col2 = document.createElement("td");
+            col2.innerText = elem.prior;
+            if (elem.prior == "high") {
+                col2.style.backgroundColor = "red"
+            }
+            else {
+                col2.style.backgroundColor = "green"
+            }
+
+            let col3 = document.createElement("td");
+            col3.innerText = "delete";
+            col3.style.cursor = "pointer";
+            col3.addEventListener("click",function(){
+                event.target.parentNode.remove();
+            })
+
+            row.append(col1, col2, col3);
+            document.querySelector("tbody").append(row);
+        })
     }
 </script>
